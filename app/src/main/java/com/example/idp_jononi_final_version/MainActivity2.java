@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity2 extends AppCompatActivity {
     Toolbar toolbar;
@@ -113,6 +114,7 @@ public class MainActivity2 extends AppCompatActivity {
                         startActivity(emer);
                         return true;
                     case R.id.logout:
+                        FirebaseAuth.getInstance().signOut();
                         Toast.makeText(MainActivity2.this, "Logging out...", Toast.LENGTH_SHORT).show();
                         Intent logot = new Intent(MainActivity2.this, MainActivity.class);
                         startActivity(logot);
@@ -131,9 +133,6 @@ public class MainActivity2 extends AppCompatActivity {
                 return true;
             }
         });
-
-
-
 
     }
 }
