@@ -1,17 +1,26 @@
 package com.example.idp_jononi_final_version;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
     Button login, signup;
     EditText loginusername, loginpassword;
+    FirebaseAuth fAuth;
     ProgressBar progressBar;
 
     @Override
@@ -22,12 +31,40 @@ public class MainActivity extends AppCompatActivity {
         signup = findViewById(R.id.signup);
         loginusername = findViewById(R.id.username);
         loginpassword = findViewById(R.id.password);
-
+        fAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                startActivity(intent);
+                String em= loginusername.getText().toString().trim();
+                String pw= loginpassword.getText().toString().trim();
+
+                if (TextUtils.isEmpty(em)){
+                    loginusername.setError("Email is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(pw)){
+                    loginpassword.setError("Password is required");
+                    return;
+                }
+                if(pw.length()<6){
+                    loginpassword.setError("The password must be 6 charecters long");
+                    return;
+                }
+//                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+//                startActivity(intent);
+                fAuth.signInWithEmailAndPassword(em,pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                       if(task.isSuccessful()){
+                           Toast.makeText(MainActivity.this,"Login is successful",Toast.LENGTH_SHORT).show();
+                           Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                              startActivity(intent);
+                       }
+                       else{
+                           Toast.makeText(MainActivity.this,"Error!"+task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                       }
+                    }
+                });
 
             }
 
