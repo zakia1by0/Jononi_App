@@ -12,6 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDP_jononi_final_version">
         <activity
+            android:name=".Email_Verificiation"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".status"
             android:exported="false">
             <meta-data

@@ -17,6 +17,8 @@ import java.util.regex.Pattern;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -83,6 +85,22 @@ public class Signup extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    FirebaseUser user = fAuth.getCurrentUser();
+                                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                                Toast.makeText(Signup.this,"A verification email has been sent.",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(Signup.this,"verification failed due to : "+e.getMessage(),Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    });
+
+
+
                                     // Sign in success, update UI with the signed-in user's information
                                     Toast.makeText(Signup.this, "Authentication Successfull.",
                                             Toast.LENGTH_SHORT).show();
