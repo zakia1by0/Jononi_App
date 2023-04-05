@@ -86,25 +86,37 @@ public class Signup extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = fAuth.getCurrentUser();
-                                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                                Toast.makeText(Signup.this,"A verification email has been sent.",Toast.LENGTH_SHORT).show();
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(Signup.this,"verification failed due to : "+e.getMessage(),Toast.LENGTH_SHORT).show();
+                                    if (user.isEmailVerified()){
+                                        Toast.makeText(Signup.this,"Authentication Successfull.",Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
+                                    }else {
+                                        user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                    Toast.makeText(Signup.this,"A verification email has been sent.",Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Signup.this, "Kindly verify your email then login",
+                                                        Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(Signup.this, MainActivity.class);
+                                                startActivity(intent);
 
-                                        }
-                                    });
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(Signup.this,"verification failed due to : "+e.getMessage(),Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        });
+                                    }
 
 
+                                    if (user.isEmailVerified()){
+                                        Toast.makeText(Signup.this,"Authentication Successfull.",Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
+                                    }
 
                                     // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(Signup.this, "Authentication Successfull.",
-                                            Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(getApplicationContext(),MainActivity2.class));
+
 
                                 } else {
                                     // If sign in fails, display a message to the user
