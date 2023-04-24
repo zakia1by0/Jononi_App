@@ -112,6 +112,12 @@ public class MainActivity2 extends AppCompatActivity {
                         Intent emer = new Intent(MainActivity2.this, SOS.class);
                         startActivity(emer);
                         return true;
+
+                    case R.id.status:
+                        Toast.makeText(MainActivity2.this, "Current status is loading...", Toast.LENGTH_SHORT).show();
+                        Intent st = new Intent(MainActivity2.this, status_page.class);
+                        startActivity(st);
+                        return true;
                     case R.id.logout:
                         Toast.makeText(MainActivity2.this, "Logging out...", Toast.LENGTH_SHORT).show();
                         Intent logot = new Intent(MainActivity2.this, MainActivity.class);
