@@ -48,5 +48,8 @@ dependencies {
     implementation 'com.github.VishnuSivadasVS:Advanced-HttpURLConnection:1.2'
     implementation platform('com.google.firebase:firebase-bom:31.3.0')
     implementation 'com.google.firebase:firebase-database'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.5.0'
+
 
 }

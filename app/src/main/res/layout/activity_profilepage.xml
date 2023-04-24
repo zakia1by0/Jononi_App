@@ -7,7 +7,7 @@
     android:background="#CB024E77"
     tools:context=".profilepage">
     <EditText
-        android:id="@+id/spousename3"
+        android:id="@+id/hght"
         android:layout_width="337dp"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
@@ -25,11 +25,11 @@
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spousename2"
+        app:layout_constraintTop_toBottomOf="@+id/conceivedate"
         tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields" />
 
     <EditText
-        android:id="@+id/spousename2"
+        android:id="@+id/conceivedate"
         android:layout_width="337dp"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
