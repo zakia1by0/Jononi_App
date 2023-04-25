@@ -18,6 +18,11 @@
                 android:icon="@drawable/ic_baseline_person_24">
             </item>
             <item
+                android:id="@+id/status_overall"
+                android:title="Status"
+                android:icon="@drawable/ic_baseline_person_24">
+            </item>
+            <item
                 android:id="@+id/connect"
                 android:title="Connect Bluetooth"
                 android:icon="@drawable/ic_baseline_bluetooth_24">

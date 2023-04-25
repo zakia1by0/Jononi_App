@@ -124,6 +124,11 @@ public class MainActivity2 extends AppCompatActivity {
                         Intent blth = new Intent(MainActivity2.this, Bluetooth.class);
                         startActivity(blth);
                         return true;
+                    case R.id.status_overall:
+                        Toast.makeText(MainActivity2.this, "Status Page...", Toast.LENGTH_SHORT).show();
+                        Intent st = new Intent(MainActivity2.this, status_page.class);
+                        startActivity(st);
+                        return true;
 
 
                     default:
