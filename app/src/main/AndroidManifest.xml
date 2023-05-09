@@ -12,20 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IDP_jononi_final_version">
         <activity
+            android:name=".FAQ"
+            android:exported="false" />
+        <activity
             android:name=".status_page"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity>
-        <!-- <activity -->
+        </activity> <!-- <activity -->
         <!-- android:name=".Email_Verificiation" -->
         <!-- android:exported="false"> -->
         <!-- <meta-data -->
         <!-- android:name="android.app.lib_name" -->
         <!-- android:value="" /> -->
         <!-- </activity> -->
-
         <activity
             android:name=".Settings"
             android:exported="false" />

@@ -85,7 +85,7 @@ public class MainActivity2 extends AppCompatActivity {
         cardView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this, Chatbot.class);
+                Intent intent = new Intent(MainActivity2.this, FAQ.class);
                 startActivity(intent);
             }
 

@@ -291,28 +291,6 @@
                     app:cardCornerRadius="8dp"
                     app:cardElevation="9dp">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|center_horizontal"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/chatbot"
-                            android:layout_width="30dp"
-                            android:layout_height="61dp"
-                            android:src="@drawable/bot" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-condensed"
-                            android:text="Chatbot"
-                            android:textStyle="bold">
-
-                        </TextView>
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -322,16 +300,16 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/chatbot"
+                            android:id="@+id/faq"
                             android:layout_width="30dp"
                             android:layout_height="61dp"
-                            android:src="@drawable/bot" />
+                            android:src="@drawable/ic_baseline_question_answer_24" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-condensed"
-                            android:text="Chatbot"
+                            android:text="FAQ"
                             android:textStyle="bold">
 
                         </TextView>

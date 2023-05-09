@@ -6,15 +6,15 @@
     android:layout_height="match_parent"
     android:background="#CB024E77"
     tools:context=".profilepage">
+
     <EditText
         android:id="@+id/hght"
-        android:layout_width="337dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20sp"
-        android:layout_marginStart="35dp"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
+        android:layout_margin="10sp"
 
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:background="#ACBDE8"
         android:drawablePadding="10sp"
         android:hint="Height : 7ft"
@@ -22,21 +22,20 @@
         android:padding="10sp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
+
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conceivedate"
         tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields" />
 
     <EditText
         android:id="@+id/conceivedate"
-        android:layout_width="337dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20sp"
-        android:layout_marginStart="35dp"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
+        android:layout_margin="10sp"
 
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:background="#ACBDE8"
         android:drawablePadding="10sp"
         android:hint="Conceived Date : 1/1/1971"
@@ -44,9 +43,9 @@
         android:padding="10sp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
+
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spousename"
         tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields" />
 
@@ -81,13 +80,12 @@
 
     <EditText
         android:id="@+id/spousename"
-        android:layout_width="337dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="20sp"
-        android:layout_marginStart="35dp"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
+        android:layout_margin="10sp"
 
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="35dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:background="#ACBDE8"
         android:drawablePadding="10sp"
         android:hint="Spouse Name :Elon Musk"
@@ -95,34 +93,32 @@
         android:padding="10sp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
+
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fullname"
         tools:ignore="Autofill,HardcodedText,MissingConstraints,TextFields" />
 
     <EditText
         android:id="@+id/fullname"
-        android:layout_width="337dp"
-        android:layout_height="wrap_content"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
 
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="30dp"
-
-        android:layout_marginEnd="35dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
         android:background="#ACBDE8"
-        android:drawablePadding="10sp"
 
+        android:drawablePadding="10sp"
         android:hint="Name : Zeke Tamanna"
         android:inputType="text"
         android:minHeight="48dp"
-        android:padding="10sp"
 
+        android:padding="10sp"
         android:textColor="@color/black"
+
         android:textColorHint="#000000"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email"
         tools:ignore="Autofill,ExtraText,HardcodedText,MissingConstraints" />
 
@@ -143,6 +139,7 @@
         android:padding="5sp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
+
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.49"
@@ -150,6 +147,61 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         tools:ignore="Autofill,HardcodedText,MissingConstraints" />
 
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="114dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="44dp"
+
+        android:layout_marginEnd="-19dp"
+        android:text="Fullname: "
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/fullname"
+        app:layout_constraintTop_toBottomOf="@+id/email"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="145dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_marginEnd="-10dp"
+        android:text="Spousename: "
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/spousename"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="210dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="25dp"
+
+        android:layout_marginEnd="-50dp"
+        android:text="Conceived Date: "
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/conceivedate"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="112dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_marginEnd="-40dp"
+        android:text="Height: "
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/hght"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

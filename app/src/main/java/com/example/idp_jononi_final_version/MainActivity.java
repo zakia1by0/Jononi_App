@@ -18,11 +18,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class MainActivity extends AppCompatActivity {
     Button login, signup;
     EditText loginusername, loginpassword;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         loginpassword = findViewById(R.id.password);
         fAuth = FirebaseAuth.getInstance();
         login.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 String em= loginusername.getText().toString().trim();
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 //                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
 //                startActivity(intent);
                 fAuth.signInWithEmailAndPassword(em,pw).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                        if(task.isSuccessful()){
