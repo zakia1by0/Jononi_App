@@ -207,7 +207,7 @@
                     app:cardElevation="9dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="111dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical|center_horizontal"
                         android:gravity="center"
@@ -215,9 +215,9 @@
 
                         <ImageView
                             android:id="@+id/baby_kick"
-                            android:layout_width="30dp"
-                            android:layout_height="61dp"
-                            android:src="@drawable/fetus"
+                            android:layout_width="111dp"
+                            android:layout_height="63dp"
+                            android:src="@drawable/temperature"
                             tools:ignore="InvalidId" />
 
                         <TextView
@@ -225,7 +225,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-condensed"
-                            android:text="Baby Kick Count"
+                            android:text="Temperature"
                             android:textStyle="bold">
 
                         </TextView>
