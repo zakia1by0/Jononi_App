@@ -1,14 +1,28 @@
 package com.example.idp_jononi_final_version;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class status_page extends AppCompatActivity {
     ImageView back6,person;
+    TextView temp;
+    TextView bs;
+    TextView bp;
+    TextView bmi;
+    TextView recommendation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +30,105 @@ public class status_page extends AppCompatActivity {
         setContentView(R.layout.activity_status_page);
         back6=findViewById(R.id.backbutton);
         person=findViewById(R.id.imageperson);
+        temp = findViewById(R.id.temp);
+        bs = findViewById(R.id.bs);
+        bp = findViewById(R.id.bp);
+        bmi = findViewById(R.id.bmi);
+        recommendation = findViewById(R.id.recom);
+
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("temp");
+        final int[] blood_pressure_s = new int[1];
+        final int[] blood_pressure_d = new int[1];
+        final int[] blood_sugar_p = new int[1];
+        final int[] bmi_p = new int[1];
+        final int[] temperature_p = new int[1];
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String temperature = dataSnapshot.getValue(String.class);
+                String temper="\n  Body \n Temperature \n"+temperature+"\u00B0 F";
+                temp.setText(temper);
+                temperature_p[0] = Integer.parseInt(temperature);
+                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + temperature);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("YOUR LOG TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+        DatabaseReference myRef1 = database.getReference("bp");
+        myRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String blood_pressure = dataSnapshot.getValue(String.class);
+                String b_p="\n  Blood \n Pressure \n"+ blood_pressure +"mmHg";
+                bp.setText(b_p);
+                String[] arrOfStr = blood_pressure.split("/");
+
+                blood_pressure_s[0] =Integer.parseInt(arrOfStr[0]);
+                blood_pressure_d[0] =Integer.parseInt(arrOfStr[1]);
+                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + blood_pressure );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("YOUR LOG TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+        DatabaseReference myRef2 = database.getReference("blood_sugar");
+        myRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String blood_sugar = dataSnapshot.getValue(String.class);
+                String b_s="\n  Blood \n  Sugar \n"+ blood_sugar ;
+                bs.setText(b_s);
+                blood_sugar_p[0] = Integer.parseInt(blood_sugar);
+                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + blood_sugar );
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("YOUR LOG TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+        DatabaseReference myRef3 = database.getReference("bmi");
+        myRef3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String bmi_val = dataSnapshot.getValue(String.class);
+                String b_mi="\n  BMI \n \n"+ bmi_val;
+                bmi.setText(b_mi);
+                bmi_p[0] =Integer.parseInt(bmi_val);
+                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + bmi_val );
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("YOUR LOG TAG", "Failed to read value.", error.toException());
+            }
+        });
+
+
+
         back6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,5 +145,87 @@ public class status_page extends AppCompatActivity {
             }
 
         });
+
+        recommendation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String originalText = "You are Healthy";
+                String recomm = "";
+                Log.d("YOUR total LOG TAG", "Value is: " + temperature_p[0]+" , " + blood_pressure_s[0]);
+                int score=0;
+                if (temperature_p[0]>100 && temperature_p[0]<103){
+                    score+=1;
+                    originalText="mild fever";
+                    recomm="you should take Napa, drink fluids";
+                }
+                else if (temperature_p[0]>103){
+                    score+=100;
+                }
+                else if (temperature_p[0]<95)
+                {
+                    score+=100;
+                }
+                if (blood_sugar_p[0]<4){
+                    score+=100;
+                }
+                else if (blood_sugar_p[0]>10){
+                    score+=100;
+                }
+                else if (blood_sugar_p[0]>4 && blood_sugar_p[0]<5){
+                    score+=1;
+                    if (originalText == "You are Healthy"){
+                        recomm="you should";
+                    }
+                    else {
+                        originalText+=",";
+                        recomm+=",";
+                    }
+
+                    originalText+="slightly low blood sugar";
+                    recomm+="have some carbs ";
+                }
+                if (blood_pressure_s[0]>140 || blood_pressure_d[0]<60){
+                    score+=100;
+                }
+                else if (blood_pressure_s[0]>130){
+                    score+=1;
+                    if (originalText == "You are Healthy"){
+                        recomm="you should";
+                    }
+                    else {
+                        originalText+=",";
+                        recomm+=",";
+                    }
+                        originalText += "slightly high blood pressure";
+                        recomm+="take some rest";
+                }
+                else if (blood_pressure_d[0]<70){
+                    score+=1;
+                    if (originalText == "You are Healthy"){
+                        recomm="you should";
+                    }
+                    else {
+                        originalText+=",";
+                        recomm+=",";
+                    }
+                        originalText += "slightly low blood pressure";
+                        recomm+="have some salt ";
+
+                }
+                if (score>=100){
+                    originalText="You health parameters are abnormal \n immediately seek medical attention.";
+                    recomm="";
+                }
+                final String ultimate= originalText + " \n " + recomm;
+                recommendation.setText("Click here to see your recommendation");
+                recommendation.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recommendation.setText(ultimate);
+                    }
+                }, 4000);
+            }
+        });
+
     }
 }
