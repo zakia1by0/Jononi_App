@@ -64,17 +64,17 @@
         app:srcCompat="@drawable/bp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/bppp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
-        android:text="Your current blood pressure is xx "
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -96,7 +96,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/bppp" />
 
     <ImageButton
         android:id="@+id/imageButton6"
