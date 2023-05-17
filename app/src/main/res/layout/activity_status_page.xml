@@ -142,8 +142,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view1"
-        android:layout_width="335dp"
-        android:layout_height="102dp"
+        android:layout_width="340dp"
+        android:layout_height="137dp"
         android:layout_gravity="center"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="10dp"
@@ -159,16 +159,91 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="307dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:fontFamily="serif"
-            android:text="Name :  Chowdhury Farjana\nAge     :  25 yrs\nConceived Date :   15/11/1971"
+            android:text="Name : "
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="normal"
             app:cornerRadius="20sp" />
+
+        <EditText
+            android:id="@+id/Status_name"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="05dp"
+            android:fontFamily="serif"
+            android:text="Zakia Tamanna "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:cornerRadius="20sp"
+            tools:ignore="InvalidId" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="50dp"
+            android:fontFamily="serif"
+            android:text="Conceived Date: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:cornerRadius="20sp" />
+
+        <EditText
+            android:id="@+id/Status_condate"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="39dp"
+            android:fontFamily="serif"
+            android:text="11/22/22 "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:cornerRadius="20sp"
+            tools:ignore="InvalidId" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="serif"
+            android:text="Height: "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:cornerRadius="20sp" />
+
+        <EditText
+            android:id="@+id/Status_height"
+            android:layout_width="155dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="90dp"
+            android:fontFamily="serif"
+            android:text="5ft "
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:cornerRadius="20sp"
+            tools:ignore="InvalidId" />
+
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

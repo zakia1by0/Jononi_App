@@ -7,14 +7,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import javax.annotation.Nullable;
 
 public class status_page extends AppCompatActivity {
     ImageView back6,person;
@@ -23,6 +32,11 @@ public class status_page extends AppCompatActivity {
     TextView bp;
     TextView bmi;
     TextView recommendation;
+    EditText st_name,st_height,st_condate;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+    String userID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +49,24 @@ public class status_page extends AppCompatActivity {
         bp = findViewById(R.id.bp);
         bmi = findViewById(R.id.bmi);
         recommendation = findViewById(R.id.recom);
+        st_condate=findViewById(R.id.Status_condate);
+        st_name=findViewById(R.id.Status_name);
+        st_height=findViewById(R.id.Status_height);
+        fAuth=FirebaseAuth.getInstance();
+        fStore=FirebaseFirestore.getInstance();
+        userID=fAuth.getCurrentUser().getUid();
+        DocumentReference documentReference=fStore.collection("User Information").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                st_condate.setText(documentSnapshot.getString("Conceived Date"));
+                st_height.setText(documentSnapshot.getString("Height"));
+                st_name.setText(documentSnapshot.getString("Fullname"));
+            }
+        });
+
+
+
 
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("temp");

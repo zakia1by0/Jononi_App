@@ -32,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar);
         cardView1=findViewById(R.id.cardview1);
         cardView2=findViewById(R.id.cardview2);
-        cardView3=findViewById(R.id.cardview3);
+        //cardView3=findViewById(R.id.cardview3);
         cardView4=findViewById(R.id.cardview4);
         cardView5=findViewById(R.id.cardview5);
         cardView6=findViewById(R.id.cardview6);
@@ -58,14 +58,14 @@ public class MainActivity2 extends AppCompatActivity {
             }
 
         });
-        cardView3.setOnClickListener(new View.OnClickListener() {
+        /*cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity2.this, Bloodsugar.class);
                 startActivity(intent);
             }
 
-        });
+        });*/
         cardView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
