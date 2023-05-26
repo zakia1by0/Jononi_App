@@ -58,8 +58,8 @@
                 tools:ignore="MissingConstraints"></TextView>
 
             <GridLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="339dp"
+                android:layout_height="626dp"
                 android:columnCount="2"
                 android:paddingTop="140dp"
                 android:rowCount="3"
@@ -235,8 +235,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardview5"
-                    android:layout_width="155dp"
-                    android:layout_height="153dp"
+                    android:layout_width="144dp"
+                    android:layout_height="80dp"
                     android:layout_row="2"
                     android:layout_column="0"
                     android:layout_gravity="fill"
@@ -274,6 +274,7 @@
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
+
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardview6"
@@ -317,10 +318,13 @@
 
 
                 </androidx.cardview.widget.CardView>
+
             </GridLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     </ScrollView>
 

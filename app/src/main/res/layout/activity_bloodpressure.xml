@@ -16,7 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="135dp"
-        android:background="#FF278FEA"
+        android:background="#8603b8"
         android:capitalize="none"
         android:text="Low Pressure"
         android:textAlignment="center"
@@ -35,7 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="135dp"
-        android:background="#FF278FEA"
+        android:background="#8603b8"
         android:capitalize="none"
         android:text="High Pressure"
         android:textAlignment="center"
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2"
         app:layout_constraintVertical_bias="0.113"
-        app:srcCompat="@drawable/bp" />
+        app:srcCompat="@drawable/blood_p" />
 
     <TextView
         android:id="@+id/bppp"
@@ -87,7 +87,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="135dp"
-        android:background="#FF278FEA"
+        android:background="#8603b8"
         android:capitalize="none"
         android:text="Normal"
         android:textAlignment="center"
@@ -103,7 +103,7 @@
         android:layout_width="57dp"
         android:layout_height="68dp"
         android:layout_marginEnd="28dp"
-        android:layout_marginBottom="204dp"
+        android:layout_marginBottom="116dp"
         android:background="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

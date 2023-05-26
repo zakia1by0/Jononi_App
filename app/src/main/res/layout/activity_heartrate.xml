@@ -16,7 +16,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="135dp"
-        android:background="#FF278FEA"
+        android:background="#8603b8"
         android:capitalize="none"
         android:text="Low heartrate"
         android:textAlignment="center"
@@ -35,7 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="135dp"
-        android:background="#FF278FEA"
+        android:background="#8603b8"
         android:capitalize="none"
         android:text="High heartrate"
         android:textAlignment="center"
@@ -61,7 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2"
         app:layout_constraintVertical_bias="0.113"
-        app:srcCompat="@drawable/heartbit" />
+        app:srcCompat="@drawable/heart" />
 
     <TextView
         android:id="@+id/textView"
@@ -71,7 +71,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
-        android:text="Your current heart rate is xx "
+        android:text="Your current heart rate is 70 "
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="25dp"
@@ -87,7 +87,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="135dp"
-        android:background="#FF278FEA"
+        android:background="#8603b8"
         android:capitalize="none"
         android:text="Normal"
         android:textAlignment="center"

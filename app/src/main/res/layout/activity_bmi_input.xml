@@ -69,19 +69,18 @@
         android:layout_height="76dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="122dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="122dp"
-        android:backgroundTint="#FF278FEA"
+        android:backgroundTint="#8603b8"
         android:fontFamily="serif"
         android:text="Submit"
         android:textColor="#FFFFFF"
         app:cornerRadius="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterweight2"
         tools:ignore="HardcodedText,MissingConstraints" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
