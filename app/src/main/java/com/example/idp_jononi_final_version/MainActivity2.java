@@ -23,7 +23,7 @@ public class MainActivity2 extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    CardView cardView1,cardView2,cardView3,cardView4,cardView5,cardView6;
+    CardView cardView1,cardView2,cardView3,cardView4,cardView5,cardView6,cardView7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class MainActivity2 extends AppCompatActivity {
         cardView4=findViewById(R.id.cardview4);
         cardView5=findViewById(R.id.cardview5);
         cardView6=findViewById(R.id.cardview6);
+        cardView7=findViewById(R.id.cardview7);
         drawerLayout=findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.navigation);
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -86,6 +87,14 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity2.this, FAQ.class);
+                startActivity(intent);
+            }
+
+        });
+        cardView7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity2.this, status_page.class);
                 startActivity(intent);
             }
 

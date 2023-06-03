@@ -69,10 +69,10 @@ public class status_page extends AppCompatActivity {
 
 
         FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("temp");
+        DatabaseReference myRef = database.getReference("mother0/Sensor Data/temperature");
         final int[] blood_pressure_s = new int[1];
         final int[] blood_pressure_d = new int[1];
-        final int[] blood_sugar_p = new int[1];
+        final float[] blood_sugar_p = new float[1];
         final int[] bmi_p = new int[1];
         final int[] temperature_p = new int[1];
         // Read from the database
@@ -95,19 +95,17 @@ public class status_page extends AppCompatActivity {
             }
         });
 
-        DatabaseReference myRef1 = database.getReference("bp");
+        DatabaseReference myRef1 = database.getReference("mother0/Sensor Data/pulse rate");
         myRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String blood_pressure = dataSnapshot.getValue(String.class);
-                String b_p="\n  Blood \n Pressure \n"+ blood_pressure +"mmHg";
+                String b_p="\n  Pulse \n Rate \n"+ blood_pressure +"bpm";
                 bp.setText(b_p);
-                String[] arrOfStr = blood_pressure.split("/");
 
-                blood_pressure_s[0] =Integer.parseInt(arrOfStr[0]);
-                blood_pressure_d[0] =Integer.parseInt(arrOfStr[1]);
+                blood_pressure_s[0] =Integer.parseInt(blood_pressure);
                 Log.d("YOUR SUCCESS LOG TAG", "Value is: " + blood_pressure );
             }
 
@@ -118,7 +116,7 @@ public class status_page extends AppCompatActivity {
             }
         });
 
-        DatabaseReference myRef2 = database.getReference("blood_sugar");
+        DatabaseReference myRef2 = database.getReference("mother0/Sensor Data/blood sugar");
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -127,7 +125,7 @@ public class status_page extends AppCompatActivity {
                 String blood_sugar = dataSnapshot.getValue(String.class);
                 String b_s="\n  Blood \n  Sugar \n"+ blood_sugar ;
                 bs.setText(b_s);
-                blood_sugar_p[0] = Integer.parseInt(blood_sugar);
+                blood_sugar_p[0] = Float.parseFloat(blood_sugar);
                 Log.d("YOUR SUCCESS LOG TAG", "Value is: " + blood_sugar );
             }
 
@@ -138,7 +136,7 @@ public class status_page extends AppCompatActivity {
             }
         });
 
-        DatabaseReference myRef3 = database.getReference("bmi");
+        DatabaseReference myRef3 = database.getReference("mother0/Sensor Data/bmi");
         myRef3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
