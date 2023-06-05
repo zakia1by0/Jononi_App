@@ -31,6 +31,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import android.os.Bundle;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 
 
 public class Signup extends AppCompatActivity {
@@ -41,6 +51,9 @@ public class Signup extends AppCompatActivity {
 
     ProgressBar progressBar;
     FirebaseFirestore firestore;
+    DatabaseReference databaseReference;
+    FirebaseDatabase  firebaseDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,6 +182,15 @@ public class Signup extends AppCompatActivity {
 //
 //                Intent intent=new Intent(Signup.this, MainActivity.class);
 //                startActivity(intent);
+                int currentAge = calculateAge(df);
+                databaseReference = FirebaseDatabase.getInstance().getReference("mother0/Sensor Data");
+
+                // Write data to the database
+                databaseReference.child("Age").setValue(currentAge);
+
+
+                Toast.makeText(Signup.this, "Current age: " + currentAge, Toast.LENGTH_SHORT).show();
+
             }
 
 
@@ -176,5 +198,28 @@ public class Signup extends AppCompatActivity {
 
 
 
+    }
+    private int calculateAge(String dateOfBirth) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date birthDate = null;
+        try {
+            birthDate = sdf.parse(dateOfBirth);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Calendar today = Calendar.getInstance();
+        Calendar birthCalendar = Calendar.getInstance();
+        birthCalendar.setTime(birthDate);
+
+        int age = today.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR);
+
+        if (today.get(Calendar.MONTH) < birthCalendar.get(Calendar.MONTH) ||
+                (today.get(Calendar.MONTH) == birthCalendar.get(Calendar.MONTH) &&
+                        today.get(Calendar.DAY_OF_MONTH) < birthCalendar.get(Calendar.DAY_OF_MONTH))) {
+            age--;
+        }
+
+        return age;
     }
 }
