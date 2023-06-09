@@ -183,7 +183,7 @@ public class Signup extends AppCompatActivity {
 //                Intent intent=new Intent(Signup.this, MainActivity.class);
 //                startActivity(intent);
                 int currentAge = calculateAge(df);
-                databaseReference = FirebaseDatabase.getInstance().getReference("mother0/Sensor Data");
+                databaseReference = FirebaseDatabase.getInstance().getReference("mother0");
 
                 // Write data to the database
                 databaseReference.child("Age").setValue(currentAge);

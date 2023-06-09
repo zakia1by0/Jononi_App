@@ -82,10 +82,11 @@ public class status_page extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String temperature = dataSnapshot.getValue(String.class);
-                String temper="\n  Body \n Temperature \n"+temperature+"\u00B0 F";
+                String temper="\n  Body \n Temperature \n"+temperature+"\u00B0 c";
                 temp.setText(temper);
                 temperature_p[0] = Integer.parseInt(temperature);
-                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + temperature);
+                temperature_p[0]= Math.round(((temperature_p[0]*9)/5)+32);
+                Log.d("temperature", "Value is: " + temperature_p[0]);
             }
 
             @Override
@@ -106,7 +107,7 @@ public class status_page extends AppCompatActivity {
                 bp.setText(b_p);
 
                 blood_pressure_s[0] =Integer.parseInt(blood_pressure);
-                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + blood_pressure );
+                Log.d("blood_pressure", "Value is: " + blood_pressure );
             }
 
             @Override
@@ -126,7 +127,7 @@ public class status_page extends AppCompatActivity {
                 String b_s="\n  Blood \n  Sugar \n"+ blood_sugar ;
                 bs.setText(b_s);
                 blood_sugar_p[0] = Float.parseFloat(blood_sugar);
-                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + blood_sugar );
+                Log.d("blood sugar", "Value is: " + blood_sugar );
             }
 
             @Override
@@ -146,7 +147,7 @@ public class status_page extends AppCompatActivity {
                 String b_mi="\n  BMI \n \n"+ bmi_val;
                 bmi.setText(b_mi);
                 bmi_p[0] =Integer.parseInt(bmi_val);
-                Log.d("YOUR SUCCESS LOG TAG", "Value is: " + bmi_val );
+                Log.d("YOUR bmi is", "Value is: " + bmi_val );
 
             }
 
@@ -243,7 +244,7 @@ public class status_page extends AppCompatActivity {
 
                 }
                 if (score>=100){
-                    originalText="You health parameters are abnormal \n immediately seek medical attention.";
+                    originalText="Your health parameters are abnormal \n immediately seek medical attention.";
                     recomm="";
                 }
                 final String ultimate= originalText + " \n " + recomm;
