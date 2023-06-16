@@ -117,7 +117,7 @@ public class status_page extends AppCompatActivity {
             }
         });
 
-        DatabaseReference myRef2 = database.getReference("mother0/Sensor Data/blood sugar");
+        DatabaseReference myRef2 = database.getReference("App Value/Blood Sugar");
         myRef2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -137,16 +137,17 @@ public class status_page extends AppCompatActivity {
             }
         });
 
-        DatabaseReference myRef3 = database.getReference("mother0/Sensor Data/bmi");
+        DatabaseReference myRef3 = database.getReference("App Value/Bmi");
         myRef3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String bmi_val = dataSnapshot.getValue(String.class);
-                String b_mi="\n  BMI \n \n"+ bmi_val;
+                float b= Float.parseFloat(bmi_val);
+                String b_mi="\n  BMI \n \n"+ Math.round(b);
                 bmi.setText(b_mi);
-                bmi_p[0] =Integer.parseInt(bmi_val);
+                bmi_p[0] =Math.round(b);
                 Log.d("YOUR bmi is", "Value is: " + bmi_val );
 
             }
