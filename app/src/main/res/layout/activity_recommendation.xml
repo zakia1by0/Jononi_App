@@ -41,13 +41,7 @@
             android:textSize="15sp"
             android:textStyle="bold"
             app:cornerRadius="20sp" />
-    </androidx.cardview.widget.CardView><![CDATA[
-
-    />
-
-    />
-
-    ]]>
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view2"

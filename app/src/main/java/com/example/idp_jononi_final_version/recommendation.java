@@ -2,8 +2,10 @@ package com.example.idp_jononi_final_version;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.ArrayList;
+
 public class recommendation extends AppCompatActivity {
     ImageView back6,person;
     FirebaseAuth fAuth;
@@ -26,6 +30,32 @@ public class recommendation extends AppCompatActivity {
     TextView bp;
 //    TextView bmi_me;
     TextView recommendation;
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    private String convertToGsm7(String message) {
+        StringBuilder gsm7Message = new StringBuilder();
+        for (int i = 0; i < message.length(); i++) {
+            char c = message.charAt(i);
+            String gsm7Char = convertCharToGsm7(c);
+            gsm7Message.append(gsm7Char);
+        }
+        return gsm7Message.toString();
+    }
+
+    private String convertCharToGsm7(char c) {
+        switch (c) {
+            case '@':
+                return "00";
+            case '£':
+                return "01";
+            case '$':
+                return "02";
+            case '¥':
+                return "03";
+            // Add more character mappings as needed
+            default:
+                return String.valueOf(c);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +67,47 @@ public class recommendation extends AppCompatActivity {
         bs = findViewById(R.id.bs_r);
         bp = findViewById(R.id.bp_r);
         recommendation = findViewById(R.id.recom_r);
+        final Double[] latitudee= new Double[1];
+        final Double[] longitudee= new Double[1];
+        final String[] location = new String[1];
         fAuth=FirebaseAuth.getInstance();
         FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference myRef10 = database.getReference("mother0/Sensor Data/latitude");
+        DatabaseReference myRef20 = database.getReference("mother0/Sensor Data/longitude");
         DatabaseReference myRef = database.getReference("mother0/Sensor Data/temperature");
+        myRef10.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String latitude = dataSnapshot.getValue(String.class);
+                String b_s="\n  latitude \n"+ latitude ;
+                latitudee[0] = Double.valueOf(latitude);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("YOUR LOG TAG", "Failed to read value.", error.toException());
+            }
+        });
+        myRef20.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String longitude = dataSnapshot.getValue(String.class);
+                String b_s="\n  latitude \n"+ longitude ;
+                longitudee[0] = Double.valueOf(longitude);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w("YOUR LOG TAG", "Failed to read value.", error.toException());
+            }
+        });
+
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -182,6 +250,42 @@ public class recommendation extends AppCompatActivity {
                 String b_mi="\n  BMI \n \n"+ bmi_val;
                 if (b==2){
                     b_mi="You have a high level of risk \n your close contacts are informed\n of the situation please take necessary actions";
+                    location[0] = "https://www.google.com/maps?q=" + latitudee[0] + "," + longitudee[0];
+                    System.out.println("ekhan theke"+ location[0]);
+                    System.out.println("ekhan theke"+ latitudee[0]);
+                    System.out.println("ekhan theke"+ longitudee[0]);
+                    String phoneNumber="01753861142";
+                    String message="your contact is in need of immediate medical assistance. (location :  " +location[0]+
+                            " )Please respond urgently!";
+                    System.out.println("ekhan theke"+ message);
+                    try {
+                        SmsManager smsManager = SmsManager.getDefault();
+
+                        int MAX_SMS_LENGTH = 300;
+                        int MAX_GSM7_CHARACTERS = MAX_SMS_LENGTH * 8 / 7;
+                        int totalParts = (int) Math.ceil((double) message.length() / MAX_GSM7_CHARACTERS);
+
+                        ArrayList<String> parts = new ArrayList<>();
+                        for (int i = 0; i < totalParts; i++) {
+                            int startIndex = i * MAX_GSM7_CHARACTERS;
+                            int endIndex = Math.min(startIndex + MAX_GSM7_CHARACTERS, message.length());
+                            String part = convertToGsm7(message.substring(startIndex, endIndex));
+                            parts.add(part);
+                        }
+
+                        ArrayList<PendingIntent> sentIntents = new ArrayList<>();
+                        ArrayList<PendingIntent> deliveryIntents = new ArrayList<>();
+                        for (int i = 0; i < totalParts; i++) {
+                            sentIntents.add(null);
+                            deliveryIntents.add(null);
+                        }
+                        smsManager.sendMultipartTextMessage(phoneNumber, null, parts, sentIntents, deliveryIntents);
+                        Log.d("blood sugar", "message sent");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("FAIL", String.valueOf(e));
+                    }
+
                 }
                 else if (b==1){
                     b_mi="You have a mid level of risk \n please take rest \n and necessary medications";
@@ -206,6 +310,9 @@ public class recommendation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(recommendation.this, MainActivity2.class);
+                System.out.println(latitudee[0]);
+                System.out.println(longitudee[0]);
+                System.out.println(location[0]);
                 startActivity(intent);
             }
 
