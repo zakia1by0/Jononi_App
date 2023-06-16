@@ -48,7 +48,7 @@ public class status_page extends AppCompatActivity {
         bs = findViewById(R.id.bs);
         bp = findViewById(R.id.bp);
         bmi = findViewById(R.id.bmi);
-        recommendation = findViewById(R.id.recom);
+        recommendation = findViewById(R.id.recommen);
         st_condate=findViewById(R.id.Status_condate);
         st_name=findViewById(R.id.Status_name);
         st_height=findViewById(R.id.Status_height);
@@ -82,7 +82,9 @@ public class status_page extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String temperature = dataSnapshot.getValue(String.class);
-                String temper="\n  Body \n Temperature \n"+temperature+"\u00B0 c";
+                int t=Integer.parseInt(temperature);
+                t=Math.round(((t * 9)/5)+32);
+                String temper="\n  Body \n Temperature \n"+t+"\u00B0 F";
                 temp.setText(temper);
                 temperature_p[0] = Integer.parseInt(temperature);
                 temperature_p[0]= Math.round(((temperature_p[0]*9)/5)+32);
@@ -180,84 +182,94 @@ public class status_page extends AppCompatActivity {
 
         recommendation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String originalText = "You are Healthy";
-                String recomm = "";
-                Log.d("YOUR total LOG TAG", "Value is: " + temperature_p[0]+" , " + blood_pressure_s[0]);
-                int score=0;
-                if (temperature_p[0]>100 && temperature_p[0]<103){
-                    score+=1;
-                    originalText="mild fever";
-                    recomm="you should take Napa, drink fluids";
-                }
-                else if (temperature_p[0]>103){
-                    score+=100;
-                }
-                else if (temperature_p[0]<95)
-                {
-                    score+=100;
-                }
-                if (blood_sugar_p[0]<4){
-                    score+=100;
-                }
-                else if (blood_sugar_p[0]>10){
-                    score+=100;
-                }
-                else if (blood_sugar_p[0]>4 && blood_sugar_p[0]<5){
-                    score+=1;
-                    if (originalText == "You are Healthy"){
-                        recomm="you should";
-                    }
-                    else {
-                        originalText+=",";
-                        recomm+=",";
-                    }
-
-                    originalText+="slightly low blood sugar";
-                    recomm+="have some carbs ";
-                }
-                if (blood_pressure_s[0]>140 || blood_pressure_d[0]<60){
-                    score+=100;
-                }
-                else if (blood_pressure_s[0]>130){
-                    score+=1;
-                    if (originalText == "You are Healthy"){
-                        recomm="you should";
-                    }
-                    else {
-                        originalText+=",";
-                        recomm+=",";
-                    }
-                        originalText += "slightly high blood pressure";
-                        recomm+="take some rest";
-                }
-                else if (blood_pressure_d[0]<70){
-                    score+=1;
-                    if (originalText == "You are Healthy"){
-                        recomm="you should";
-                    }
-                    else {
-                        originalText+=",";
-                        recomm+=",";
-                    }
-                        originalText += "slightly low blood pressure";
-                        recomm+="have some salt ";
-
-                }
-                if (score>=100){
-                    originalText="Your health parameters are abnormal \n immediately seek medical attention.";
-                    recomm="";
-                }
-                final String ultimate= originalText + " \n " + recomm;
-                recommendation.setText("Click here to see your recommendation");
-                recommendation.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        recommendation.setText(ultimate);
-                    }
-                }, 4000);
+            public void onClick(View view) {
+                Intent intent = new Intent(status_page.this, recommendation.class);
+                startActivity(intent);
             }
+
+
         });
+
+//        recommendation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String originalText = "You are Healthy";
+//                String recomm = "";
+//                Log.d("YOUR total LOG TAG", "Value is: " + temperature_p[0]+" , " + blood_pressure_s[0]);
+//                int score=0;
+//                if (temperature_p[0]>100 && temperature_p[0]<103){
+//                    score+=1;
+//                    originalText="mild fever";
+//                    recomm="you should take Napa, drink fluids";
+//                }
+//                else if (temperature_p[0]>103){
+//                    score+=100;
+//                }
+//                else if (temperature_p[0]<95)
+//                {
+//                    score+=100;
+//                }
+//                if (blood_sugar_p[0]<4){
+//                    score+=100;
+//                }
+//                else if (blood_sugar_p[0]>10){
+//                    score+=100;
+//                }
+//                else if (blood_sugar_p[0]>4 && blood_sugar_p[0]<5){
+//                    score+=1;
+//                    if (originalText == "You are Healthy"){
+//                        recomm="you should";
+//                    }
+//                    else {
+//                        originalText+=",";
+//                        recomm+=",";
+//                    }
+//
+//                    originalText+="slightly low blood sugar";
+//                    recomm+="have some carbs ";
+//                }
+//                if (blood_pressure_s[0]>140 || blood_pressure_d[0]<60){
+//                    score+=100;
+//                }
+//                else if (blood_pressure_s[0]>130){
+//                    score+=1;
+//                    if (originalText == "You are Healthy"){
+//                        recomm="you should";
+//                    }
+//                    else {
+//                        originalText+=",";
+//                        recomm+=",";
+//                    }
+//                        originalText += "slightly high blood pressure";
+//                        recomm+="take some rest";
+//                }
+//                else if (blood_pressure_d[0]<70){
+//                    score+=1;
+//                    if (originalText == "You are Healthy"){
+//                        recomm="you should";
+//                    }
+//                    else {
+//                        originalText+=",";
+//                        recomm+=",";
+//                    }
+//                        originalText += "slightly low blood pressure";
+//                        recomm+="have some salt ";
+//
+//                }
+//                if (score>=100){
+//                    originalText="Your health parameters are abnormal \n immediately seek medical attention.";
+//                    recomm="";
+//                }
+//                final String ultimate= originalText + " \n " + recomm;
+//                recommendation.setText("Click here to see your recommendation");
+//                recommendation.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        recommendation.setText(ultimate);
+//                    }
+//                }, 4000);
+//            }
+//        });
 
     }
 }

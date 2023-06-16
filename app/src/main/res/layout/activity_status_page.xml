@@ -6,6 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".status_page">
 
+    <Button
+        android:id="@+id/recommen"
+        android:layout_width="194dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="628dp"
+        android:layout_marginEnd="160dp"
+        android:backgroundTint="#6e0298"
+        android:text="Recommendation"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include2"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
     <include
         android:id="@+id/include2"
         layout="@layout/toolbar"
