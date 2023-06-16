@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".BMI">
+    tools:context=".BMI"
+    android:id="@+id/bmipage"
+    tools:ignore="InvalidId">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewbmi3"
         android:layout_width="243dp"
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
@@ -17,17 +19,17 @@
         android:layout_marginEnd="135dp"
         android:background="#8603b8"
         android:capitalize="none"
-        android:text="Low heartrate"
+        android:text="Low BMI(Underweight)"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="29dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewbmi4" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewbmi4"
         android:layout_width="241dp"
         android:layout_height="49dp"
         android:layout_centerHorizontal="true"
@@ -36,14 +38,14 @@
         android:layout_marginEnd="135dp"
         android:background="#8603b8"
         android:capitalize="none"
-        android:text="High heartrate"
+        android:text="High BMI(obesity)"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="29dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewbmi2" />
 
     <include
         android:id="@+id/include2"
@@ -63,15 +65,15 @@
         app:srcCompat="@drawable/b_m_i" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/bmi_show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="60dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
-        android:text="Your current bmi is 25 "
         android:textAlignment="center"
+        android:text="Your current bmi is null"
         android:textColor="@color/black"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,39 +81,37 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewbmi2"
         android:layout_width="243dp"
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="135dp"
         android:background="#8603b8"
         android:capitalize="none"
-        android:text="Normal"
+        android:text="Normal BMI"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="29dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/bmi_show" />
 
     <ImageButton
-        android:id="@+id/imageButton6"
+        android:id="@+id/imageButtonbmi"
         android:layout_width="57dp"
         android:layout_height="68dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="204dp"
+        android:layout_marginTop="168dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.597"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toEndOf="@+id/textViewbmi3"
+        app:layout_constraintTop_toBottomOf="@+id/bmi_show"
         app:srcCompat="@drawable/ic_baseline_check_24"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:visibility="gone" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

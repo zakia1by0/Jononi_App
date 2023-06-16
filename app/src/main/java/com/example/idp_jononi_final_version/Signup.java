@@ -1,6 +1,6 @@
 package com.example.idp_jononi_final_version;
 
-import androidx.annotation.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -183,10 +183,10 @@ public class Signup extends AppCompatActivity {
 //                Intent intent=new Intent(Signup.this, MainActivity.class);
 //                startActivity(intent);
                 int currentAge = calculateAge(df);
-                databaseReference = FirebaseDatabase.getInstance().getReference("mother0");
+                databaseReference = FirebaseDatabase.getInstance().getReference("/App Value/Age");
 
                 // Write data to the database
-                databaseReference.child("Age").setValue(currentAge);
+                databaseReference.setValue(currentAge);
 
 
                 Toast.makeText(Signup.this, "Current age: " + currentAge, Toast.LENGTH_SHORT).show();

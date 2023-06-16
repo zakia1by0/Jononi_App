@@ -8,7 +8,6 @@
 
     tools:context=".SOS">
     <include layout="@layout/sos_segment" />
-    <include layout="@layout/toolbar"/>
 
 
     <include layout="@layout/sos_element" />

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
 
-    tools:context=".Babykickcount">
+    tools:context=".Temperature">
     <include
         android:id="@+id/include2"
         layout="@layout/toolbar"
@@ -25,7 +25,7 @@
         android:text="Low temperature"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="29dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         android:text="High temperature"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="29dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +96,7 @@
         android:text="Normal"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="29dp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,16 +106,14 @@
         android:id="@+id/imageButton100"
         android:layout_width="57dp"
         android:layout_height="68dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="176dp"
+        android:layout_marginTop="168dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.296"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/ttt"
         app:srcCompat="@drawable/ic_baseline_check_24"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

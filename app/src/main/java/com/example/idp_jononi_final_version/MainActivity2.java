@@ -1,10 +1,10 @@
 package com.example.idp_jononi_final_version;
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.MenuItemHoverListener;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -32,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         toolbar=findViewById(R.id.toolbar);
         cardView1=findViewById(R.id.cardview1);
         cardView2=findViewById(R.id.cardview2);
-        //cardView3=findViewById(R.id.cardview3);
+        cardView3=findViewById(R.id.cardview3);
         cardView4=findViewById(R.id.cardview4);
         cardView5=findViewById(R.id.cardview5);
         cardView6=findViewById(R.id.cardview6);
@@ -54,23 +54,23 @@ public class MainActivity2 extends AppCompatActivity {
         cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this, Bloodpressure.class);
+                Intent intent = new Intent(MainActivity2.this, BP_input.class);
                 startActivity(intent);
             }
 
         });
-        /*cardView3.setOnClickListener(new View.OnClickListener() {
+        cardView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this, Bloodsugar.class);
+                Intent intent = new Intent(MainActivity2.this, BloodSugar_input.class);
                 startActivity(intent);
             }
 
-        });*/
+        });
         cardView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity2.this, Babykickcount.class);
+                Intent intent = new Intent(MainActivity2.this, Temperature.class);
                 startActivity(intent);
             }
 

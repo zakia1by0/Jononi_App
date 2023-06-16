@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.idp_jononi_final_version">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IDP_jononi_final_version">
+        <activity
+            android:name=".BP_input"
+            android:exported="false" />
         <activity
             android:name=".FAQ"
             android:exported="false" />
@@ -65,10 +69,13 @@
             android:name=".Bloodpressure"
             android:exported="false" />
         <activity
+            android:name=".BloodSugar_input"
+            android:exported="false"></activity>
+        <activity
             android:name=".SOS"
             android:exported="false" />
         <activity
-            android:name=".Babykickcount"
+            android:name=".Temperature"
             android:exported="false" />
         <activity
             android:name=".Email_Verificiation"
@@ -82,7 +89,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity2"
-            android:exported="false" />
+            android:exported="false"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

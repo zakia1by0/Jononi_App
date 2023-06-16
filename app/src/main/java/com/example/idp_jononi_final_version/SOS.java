@@ -2,7 +2,7 @@ package com.example.idp_jononi_final_version;
 import android.app.PendingIntent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.content.Intent;
@@ -31,8 +31,11 @@ import com.google.firebase.database.ValueEventListener;
 public class SOS extends AppCompatActivity {
     ImageView back6 , person;
     Button confirmsos;
-    String[] hospitals = { "popular","matriseba","dmc","adhunik","nogormatrisodon" };
     EditText phone_no;
+    AutoCompleteTextView autoCompleteTextView;
+    String[] hospitals = { "popular","matriseba","dmc","adhunik","nogormatrisodon" };
+
+    //EditText phone_no;
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
     private String convertToGsm7(String message) {
         StringBuilder gsm7Message = new StringBuilder();
@@ -93,6 +96,7 @@ public class SOS extends AppCompatActivity {
         person=findViewById(R.id.imageperson);
         confirmsos=findViewById(R.id.confirm);
         phone_no=findViewById(R.id.phone_number);
+        autoCompleteTextView=findViewById(R.id.autoCompleteTextView);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef1 = database.getReference("mother0/Sensor Data/latitude");
         DatabaseReference myRef2 = database.getReference("mother0/Sensor Data/longitude");
@@ -157,7 +161,7 @@ public class SOS extends AppCompatActivity {
             public void onClick(View view) {
 
                 String name="Name";
-                String phoneNumber="01300243778";
+                String phoneNumber=phone_no.getText().toString();
 //                String phoneNumber="01753861142";
                 location[0] = "https://www.google.com/maps?q=" + latitudee[0] + "," + longitudee[0];
                 System.out.println("ekhan theke"+ location[0]);
@@ -193,6 +197,21 @@ public class SOS extends AppCompatActivity {
                     e.printStackTrace();
                     Log.e("FAIL", String.valueOf(e));
                 }
+
+                String phonumber = phone_no.getText().toString();
+
+                String selectedValue = autoCompleteTextView.getText().toString(); // Replace 'spinner' with the ID of your drop-down list
+
+                Intent intent = new Intent(SOS.this, SOS_confirmed.class);
+
+                intent.putExtra("phoneNumber", phoneNumber);
+                intent.putExtra("selectedValue", selectedValue);
+
+
+                startActivity(intent);
+
+
+
             }
 
         });
