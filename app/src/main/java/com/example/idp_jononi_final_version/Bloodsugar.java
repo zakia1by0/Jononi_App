@@ -39,9 +39,10 @@ public class Bloodsugar extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Retrieve the BMI value from the dataSnapshot
                 String bsValue = dataSnapshot.getValue(String.class);
-                bs.setText("Your current Blood Sugar is "+bsValue+" mg/dL");
-                int bsugar=Integer.parseInt(bsValue);
-                if(bsugar>= 70 && bsugar<=99){
+                //String bss= Float.toString(bsValue);
+                bs.setText("Your current Blood Sugar is "+bsValue+" mmol/L");
+                float bsugar=Float.parseFloat(bsValue);
+                if(bsugar>= 3.9 && bsugar<=5.5){
                     ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) bsbutton.getLayoutParams();
 
                     float scale = getResources().getDisplayMetrics().density;
@@ -57,7 +58,7 @@ public class Bloodsugar extends AppCompatActivity {
 
 
                 }
-                else if(bsugar<70){
+                else if(bsugar<3.9){
 
                     ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) bsbutton.getLayoutParams();
 
@@ -74,7 +75,7 @@ public class Bloodsugar extends AppCompatActivity {
 
 
                 }
-                else if(bsugar>=126){
+                else if(bsugar>=7.8){
 
                     ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) bsbutton.getLayoutParams();
 

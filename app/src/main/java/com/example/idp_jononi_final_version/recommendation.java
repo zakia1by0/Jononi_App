@@ -17,19 +17,29 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.ArrayList;
 
+import javax.annotation.Nullable;
+
 public class recommendation extends AppCompatActivity {
     ImageView back6,person;
-    FirebaseAuth fAuth;
     TextView temp;
     TextView bs;
     TextView bp;
 //    TextView bmi_me;
     TextView recommendation;
+    String PhoneNumber, userID;
+    FirebaseAuth fAuth;
+    FirebaseFirestore fStore;
+
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
     private String convertToGsm7(String message) {
         StringBuilder gsm7Message = new StringBuilder();
@@ -75,6 +85,16 @@ public class recommendation extends AppCompatActivity {
         DatabaseReference myRef10 = database.getReference("mother0/Sensor Data/latitude");
         DatabaseReference myRef20 = database.getReference("mother0/Sensor Data/longitude");
         DatabaseReference myRef = database.getReference("mother0/Sensor Data/temperature");
+        fAuth=FirebaseAuth.getInstance();
+        fStore= FirebaseFirestore.getInstance();
+        userID=fAuth.getCurrentUser().getUid();
+        DocumentReference documentReference=fStore.collection("User Information").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                PhoneNumber=documentSnapshot.getString("Emergency Contact");
+            }
+        });
         myRef10.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -248,13 +268,14 @@ public class recommendation extends AppCompatActivity {
                 char bm=bmi_val.charAt(1);
                 int b=Integer.parseInt(String.valueOf(bm));
                 String b_mi="\n  BMI \n \n"+ bmi_val;
+
                 if (b==2){
                     b_mi="You have a high level of risk \n your close contacts are informed\n of the situation please take necessary actions";
                     location[0] = "https://www.google.com/maps?q=" + latitudee[0] + "," + longitudee[0];
                     System.out.println("ekhan theke"+ location[0]);
                     System.out.println("ekhan theke"+ latitudee[0]);
                     System.out.println("ekhan theke"+ longitudee[0]);
-                    String phoneNumber="01753861142";
+                    //String phoneNumber="01753861142";
                     String message="your contact is in need of immediate medical assistance. (location :  " +location[0]+
                             " )Please respond urgently!";
                     System.out.println("ekhan theke"+ message);
@@ -279,7 +300,7 @@ public class recommendation extends AppCompatActivity {
                             sentIntents.add(null);
                             deliveryIntents.add(null);
                         }
-                        smsManager.sendMultipartTextMessage(phoneNumber, null, parts, sentIntents, deliveryIntents);
+                        smsManager.sendMultipartTextMessage(PhoneNumber, null, parts, sentIntents, deliveryIntents);
                         Log.d("blood sugar", "message sent");
                     } catch (Exception e) {
                         e.printStackTrace();

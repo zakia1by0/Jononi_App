@@ -40,7 +40,7 @@ public class Temperature extends AppCompatActivity {
                 // whenever data at this location is updated.
                 String temperature = dataSnapshot.getValue(String.class);
                 float tempCelcius=Float.parseFloat(temperature);
-                float tempFarenhite=tempCelcius * 9/5 + 32;
+                float tempFarenhite=tempCelcius * 9/5 + 36;
                 String temper="Your Body Temperature is "+tempFarenhite+"\u00B0 F";
                 ttt.setText(temper);
                 int marginTop;

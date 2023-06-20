@@ -187,7 +187,7 @@
         android:drawableStart="@drawable/ic_baseline_height_24"
         android:drawablePadding="10sp"
         android:hint="Height"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:minHeight="48dp"
         android:padding="10sp"
         android:textColor="#FFFFFF"

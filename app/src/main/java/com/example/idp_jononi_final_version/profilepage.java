@@ -18,7 +18,7 @@ import javax.annotation.Nullable;
 
 public class profilepage extends AppCompatActivity {
     Button cross;
-    EditText pf_name, pf_spousename,pf_height,pf_condate, pf_email;
+    EditText pf_name, pf_spousename,pf_height,pf_condate, pf_email,pf_age;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     String userID;
@@ -33,9 +33,13 @@ public class profilepage extends AppCompatActivity {
         pf_spousename=findViewById(R.id.spousename);
         pf_height=findViewById(R.id.hght);
         pf_name=findViewById(R.id.fullname);
+        //pf_age=findViewById(R.id.age);
         fAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
         userID=fAuth.getCurrentUser().getUid();
+        //String receivedAge = getIntent().getStringExtra("Age is sent");
+        //pf_age.setText(receivedAge);
+
         DocumentReference documentReference=fStore.collection("User Information").document(userID);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override

@@ -27,13 +27,17 @@ public class BloodSugar_input extends AppCompatActivity {
         bs=findViewById(R.id.enterbs2);
         back4=findViewById(R.id.backbutton);
         person=findViewById(R.id.imageperson);
+        //String floatValueBs = bs.getText().toString();
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String bloodSugarValue = bs.getText().toString(); // Get the text from EditText
+                //float floatValue = Float.parseFloat(bloodSugarValue);
 
                 databaseReference = FirebaseDatabase.getInstance().getReference("/App Value/Blood Sugar");
-                databaseReference.setValue(bloodSugarValue);
+                databaseReference.setValue(bloodSugarValue
+                );
 
                 Intent intent = new Intent(BloodSugar_input.this, Bloodsugar.class);
                 startActivity(intent);

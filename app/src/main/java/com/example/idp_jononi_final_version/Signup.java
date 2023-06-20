@@ -121,6 +121,9 @@ public class Signup extends AppCompatActivity {
                                                     Toast.makeText(Signup.this, "Kindly verify your email then login",
                                                         Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(Signup.this, MainActivity.class);
+                                                String valueToSend = df;
+                                                intent.putExtra("Age is sent", valueToSend);
+
                                                 startActivity(intent);
 
                                             }
@@ -160,6 +163,7 @@ public class Signup extends AppCompatActivity {
                                             Log.d("TAG", "onFailure: "+e.toString());
                                         }
                                     });
+
                                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
 
@@ -187,6 +191,8 @@ public class Signup extends AppCompatActivity {
 
                 // Write data to the database
                 databaseReference.setValue(currentAge);
+
+
 
 
                 Toast.makeText(Signup.this, "Current age: " + currentAge, Toast.LENGTH_SHORT).show();
